@@ -233,8 +233,20 @@
 
     <script>
         const products = [
-            { cat: "Los Favoritos", name: "Rebanada de Cheesecake", desc: "Rebanada individual de nuestro cremoso cheesecake tradicional sobre crujiente base de galleta.", price: 85, img: "https://i.postimg.cc/FFd3wr4q/Cheesecake-Natural.png", hasTopping: true },
-            { cat: "Los Favoritos", name: "Vasito Postre de Limón", desc: "Postre frío de limón en vasito individual, balance perfecto entre dulce y cítrico.", price: 30, img: "https://i.postimg.cc/WpBgvBPm/Pay-de-limon.png" },
+            { 
+                cat: "Los Favoritos", 
+                name: "Rebanada de Cheesecake", 
+                desc: "Rebanada individual de nuestro cremoso cheesecake tradicional sobre crujiente base de galleta.", 
+                price: 85, 
+                img: "https://i.postimg.cc/FFd3wr4q/Cheesecake-Natural.png", 
+                hasTopping: true,
+                toppingImages: {
+                    "Frutos Rojos": "https://i.postimg.cc/zDbK4zNm/Cheescake-FR.png",
+                    "Galleta Biscoff": "https://i.postimg.cc/44Q2738F/Captura-de-pantalla-2026-10-23-a-la-s-7-48-26-p-m.png",
+                    "Tortuga": "https://i.postimg.cc/bvZvKy5c/Copia-de-Pastel-Imposible-Rebanada.png" 
+                }
+            },
+            { cat: "Los Favoritos", name: "Vasito Postre de Limón", desc: "Postre frío de limón en vasito individual, balance perfecto entre dulce y cítrico.", price: 30, img: "https://i.postimg.cc/WpBgvBPm/Pay-L.png" },
             { cat: "Los Favoritos", name: "Vasito Arroz con Leche", desc: "Arroz con leche tradicional con un toque sutil de canela en presentación individual.", price: 30, img: "https://i.postimg.cc/1RnwbmQb/Arroz-con-leche.png" },
             
             { cat: "Cheesecakes", name: "Mini Kapricho (4-6 porciones)", desc: "Versión mini ideal para consentirte; suave, clásica y cremosa con queso Philadelphia sobre crujiente base de galleta.", price: 300, img: "https://i.postimg.cc/G3WGCW3D/Mini-k.png" },
@@ -250,7 +262,7 @@
             { cat: "Galletas Estilo NY", name: "Paquete 6 piezas", desc: "Sabores a elegir: Lotus Biscoff, Oreo, Chispas de chocolate, Red Velvet", price: 250, img: "https://i.postimg.cc/qqVgsPjk/6-galletas.png", isCookieBox: true, count: 6 },
             { cat: "Galletas Estilo NY", name: "Paquete 12 piezas", desc: "Sabores a elegir: Lotus Biscoff, Oreo, Chispas de chocolate, Red Velvet", price: 500, img: "https://i.postimg.cc/fynkcGBz/12-galletas.png", isCookieBox: true, count: 12 },
             
-            { cat: "Brownies", name: "Brownies - Muy Pronto", desc: "Próximamente disponible; brownies húmedos y chocolatosos con centro suave y textura perfecta.", price: 0, img: "https://i.postimg.cc/JnC5zY2K/Captura-de-pantalla-2026-10-22-a-la-s-10-04-35-p-m.png", comingSoon: true }
+            { cat: "Brownies", name: "Brownies - Muy Pronto", desc: "", price: 0, isQuestionMark: true, comingSoon: true }
         ];
 
         let cart = [];
@@ -266,9 +278,18 @@
                     <div class="products-grid">`;
                 
                 products.filter(p => p.cat === cat).forEach((p, index) => {
+                    let realIndex = products.indexOf(p);
                     let extraHtml = '';
+                    let imgContent = '';
+
+                    if (p.isQuestionMark) {
+                        imgContent = `<span style="font-size: 65px;">❓</span>`;
+                    } else {
+                        imgContent = `<img id="img-${realIndex}" src="${p.img}" alt="${p.name}">`;
+                    }
+
                     if (p.hasTopping) {
-                        extraHtml += `<select id="topping-${index}" class="options-select">
+                        extraHtml += `<select id="topping-${realIndex}" class="options-select" onchange="changeTopping(${realIndex})">
                             <option value="Frutos Rojos">Topping: Frutos Rojos</option>
                             <option value="Galleta Biscoff">Topping: Galleta Biscoff</option>
                             <option value="Tortuga">Topping: Tortuga (Chocolate, cajeta, nuez)</option>
@@ -277,7 +298,7 @@
                     if (p.isCookieBox) {
                         extraHtml += `<div style="font-size:12px; margin-bottom:5px; font-weight:600;">Elige tus ${p.count} sabores:</div>`;
                         for(let i=1; i<=p.count; i++) {
-                            extraHtml += `<select id="cookie-${index}-${i}" class="options-select">
+                            extraHtml += `<select id="cookie-${realIndex}-${i}" class="options-select">
                                 <option value="Chispas de chocolate">Chispas de chocolate</option>
                                 <option value="Lotus Biscoff">Lotus Biscoff</option>
                                 <option value="Oreo">Oreo</option>
@@ -289,15 +310,15 @@
                     html += `
                         <div class="product-card">
                             <div class="product-img-box">
-                                <img src="${p.img}" alt="${p.name}">
+                                ${imgContent}
                             </div>
                             <div class="product-info">
                                 <div class="product-title">${p.name}</div>
-                                <div class="product-desc">${p.desc}</div>
+                                ${p.desc ? `<div class="product-desc">${p.desc}</div>` : ''}
                                 ${extraHtml}
                                 <div class="product-footer">
                                     <div class="product-price">${p.comingSoon ? 'Próximamente' : '$' + p.price + ' MXN'}</div>
-                                    ${!p.comingSoon ? `<button class="add-btn" onclick="addToCart(${index})">Agregar</button>` : ''}
+                                    ${!p.comingSoon ? `<button class="add-btn" onclick="addToCart(${realIndex})">Agregar</button>` : ''}
                                 </div>
                             </div>
                         </div>
@@ -307,6 +328,16 @@
                 html += `</div></div>`;
             });
             catalogEl.innerHTML = html;
+        }
+
+        function changeTopping(index) {
+            let select = document.getElementById(`topping-${index}`);
+            let imgElement = document.getElementById(`img-${index}`);
+            let selectedTopping = select.value;
+            
+            if (products[index].toppingImages && products[index].toppingImages[selectedTopping]) {
+                imgElement.src = products[index].toppingImages[selectedTopping];
+            }
         }
 
         function addToCart(index) {
