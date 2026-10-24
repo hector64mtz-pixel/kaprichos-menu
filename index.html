@@ -107,11 +107,16 @@
             background: #fceade;
             padding: 15px;
             text-align: center;
-            height: 180px;
+            height: 200px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 60px;
+        }
+        .product-img-box img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 8px 8px rgba(0,0,0,0.15));
         }
         .product-info {
             padding: 15px;
@@ -199,7 +204,7 @@
 
     <header>
         <div class="logo-container">
-            <div style="font-size: 45px;">🍰</div>
+            <img src="https://i.postimg.cc/DZ256N0z/logo.png" alt="Logo Kaprichos">
         </div>
         <h1>Kaprichos - Hechos con amor</h1>
         <div class="social-links">
@@ -228,24 +233,24 @@
 
     <script>
         const products = [
-            { cat: "Los Favoritos", name: "Rebanada de Cheesecake", desc: "Rebanada individual de nuestro cremoso cheesecake tradicional sobre crujiente base de galleta.", price: 85, icon: "🍰", hasTopping: true },
-            { cat: "Los Favoritos", name: "Vasito Postre de Limón", desc: "Postre frío de limón en vasito individual, balance perfecto entre dulce y cítrico.", price: 30, icon: "🍋" },
-            { cat: "Los Favoritos", name: "Vasito Arroz con Leche", desc: "Arroz con leche tradicional con un toque sutil de canela en presentación individual.", price: 30, icon: "🍚" },
+            { cat: "Los Favoritos", name: "Rebanada de Cheesecake", desc: "Rebanada individual de nuestro cremoso cheesecake tradicional sobre crujiente base de galleta.", price: 85, img: "https://i.postimg.cc/FFd3wr4q/Cheesecake-Natural.png", hasTopping: true },
+            { cat: "Los Favoritos", name: "Vasito Postre de Limón", desc: "Postre frío de limón en vasito individual, balance perfecto entre dulce y cítrico.", price: 30, img: "https://i.postimg.cc/WpBgvBPm/Pay-de-limon.png" },
+            { cat: "Los Favoritos", name: "Vasito Arroz con Leche", desc: "Arroz con leche tradicional con un toque sutil de canela en presentación individual.", price: 30, img: "https://i.postimg.cc/1RnwbmQb/Arroz-con-leche.png" },
             
-            { cat: "Cheesecakes", name: "Mini Kapricho (4-6 porciones)", desc: "Versión mini ideal para consentirte; suave, clásica y cremosa con queso Philadelphia sobre crujiente base de galleta.", price: 300, icon: "🍰" },
-            { cat: "Cheesecakes", name: "Clásico (8-10 porciones)", desc: "Cheesecake clásico de tamaño perfecto para compartir con esa textura cremosa inigualable.", price: 600, icon: "🎂" },
-            { cat: "Cheesecakes", name: "Familiar (14-16 porciones)", desc: "Cheesecake grande ideal para eventos y reuniones familiares; textura suave y sabor irresistible.", price: 800, icon: "🥧" },
+            { cat: "Cheesecakes", name: "Mini Kapricho (4-6 porciones)", desc: "Versión mini ideal para consentirte; suave, clásica y cremosa con queso Philadelphia sobre crujiente base de galleta.", price: 300, img: "https://i.postimg.cc/G3WGCW3D/Mini-k.png" },
+            { cat: "Cheesecakes", name: "Clásico (8-10 porciones)", desc: "Cheesecake clásico de tamaño perfecto para compartir con esa textura cremosa inigualable.", price: 600, img: "https://i.postimg.cc/T2zg6z2W/Mediano-k.png" },
+            { cat: "Cheesecakes", name: "Familiar (14-16 porciones)", desc: "Cheesecake grande ideal para eventos y reuniones familiares; textura suave y sabor irresistible.", price: 800, img: "https://i.postimg.cc/Df9LT9f7/Familiar-Cheesecake.png" },
 
-            { cat: "Pastel Imposible", name: "Rebanada Pastel Imposible", desc: "Combinación perfecta de pastel de chocolate y flan cremoso con dulce de leche y nuez.", price: 60, icon: "🍫" },
-            { cat: "Pastel Imposible", name: "Clásico (8-10 porciones)", desc: "Pastel de chocolate combinado con suave flan napolitano, bañado en dulce de leche y nuez.", price: 300, icon: "🍮" },
-            { cat: "Pastel Imposible", name: "Familiar (14-16 porciones)", desc: "Deliciosa receta de pastel imposible en tamaño familiar, perfecto para compartir momentos especiales.", price: 500, icon: "🍮" },
+            { cat: "Pastel Imposible", name: "Rebanada Pastel Imposible", desc: "Combinación perfecta de pastel de chocolate y flan cremoso con dulce de leche y nuez.", price: 60, img: "https://i.postimg.cc/mZvCsvZC/Pastel-Imposible-Rebanada.png" },
+            { cat: "Pastel Imposible", name: "Clásico (8-10 porciones)", desc: "Pastel de chocolate combinado con suave flan napolitano, bañado en dulce de leche y nuez.", price: 300, img: "https://i.postimg.cc/WpBgvBph/Imposible-mediano.png" },
+            { cat: "Pastel Imposible", name: "Familiar (14-16 porciones)", desc: "Deliciosa receta de pastel imposible en tamaño familiar, perfecto para compartir momentos especiales.", price: 500, img: "https://i.postimg.cc/T2zg6z2m/Imposible-Familiar.png" },
 
-            { cat: "Galletas Estilo NY", name: "Paquete 2 piezas", desc: "Sabores a elegir: Lotus Biscoff, Oreo, Chispas de chocolate, Red Velvet", price: 90, icon: "🍪", isCookieBox: true, count: 2 },
-            { cat: "Galletas Estilo NY", name: "Paquete 4 piezas", desc: "Sabores a elegir: Lotus Biscoff, Oreo, Chispas de chocolate, Red Velvet", price: 170, icon: "🍪", isCookieBox: true, count: 4 },
-            { cat: "Galletas Estilo NY", name: "Paquete 6 piezas", desc: "Sabores a elegir: Lotus Biscoff, Oreo, Chispas de chocolate, Red Velvet", price: 250, icon: "🍪", isCookieBox: true, count: 6 },
-            { cat: "Galletas Estilo NY", name: "Paquete 12 piezas", desc: "Sabores a elegir: Lotus Biscoff, Oreo, Chispas de chocolate, Red Velvet", price: 500, icon: "🍪", isCookieBox: true, count: 12 },
+            { cat: "Galletas Estilo NY", name: "Paquete 2 piezas", desc: "Sabores a elegir: Lotus Biscoff, Oreo, Chispas de chocolate, Red Velvet", price: 90, img: "https://i.postimg.cc/mkfhYv8T/2-galletas.png", isCookieBox: true, count: 2 },
+            { cat: "Galletas Estilo NY", name: "Paquete 4 piezas", desc: "Sabores a elegir: Lotus Biscoff, Oreo, Chispas de chocolate, Red Velvet", price: 170, img: "https://i.postimg.cc/MH2X7CdZ/4-galletas.png", isCookieBox: true, count: 4 },
+            { cat: "Galletas Estilo NY", name: "Paquete 6 piezas", desc: "Sabores a elegir: Lotus Biscoff, Oreo, Chispas de chocolate, Red Velvet", price: 250, img: "https://i.postimg.cc/qqVgsPjk/6-galletas.png", isCookieBox: true, count: 6 },
+            { cat: "Galletas Estilo NY", name: "Paquete 12 piezas", desc: "Sabores a elegir: Lotus Biscoff, Oreo, Chispas de chocolate, Red Velvet", price: 500, img: "https://i.postimg.cc/fynkcGBz/12-galletas.png", isCookieBox: true, count: 12 },
             
-            { cat: "Brownies", name: "Brownies - Muy Pronto", desc: "Próximamente disponible; brownies húmedos y chocolatosos con centro suave y textura perfecta.", price: 0, icon: "🥮", comingSoon: true }
+            { cat: "Brownies", name: "Brownies - Muy Pronto", desc: "Próximamente disponible; brownies húmedos y chocolatosos con centro suave y textura perfecta.", price: 0, img: "https://i.postimg.cc/JnC5zY2K/Captura-de-pantalla-2026-10-22-a-la-s-10-04-35-p-m.png", comingSoon: true }
         ];
 
         let cart = [];
@@ -284,7 +289,7 @@
                     html += `
                         <div class="product-card">
                             <div class="product-img-box">
-                                <span>${p.icon}</span>
+                                <img src="${p.img}" alt="${p.name}">
                             </div>
                             <div class="product-info">
                                 <div class="product-title">${p.name}</div>
