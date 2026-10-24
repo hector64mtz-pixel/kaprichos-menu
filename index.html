@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kaprichos - Hechos con Amor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #d4a373;
+            --secondary-color: #faedcd;
+            --accent-color: #bc6c25;
+            --text-color: #582f0e;
+            --bg-color: #fff9f5;
+            --card-bg: #ffffff;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            padding-bottom: 120px;
+        }
+        header {
+            background-color: var(--card-bg);
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .logo-container img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 10px;
+            border: 3px solid var(--primary-color);
+        }
+        h1 {
+            font-size: 24px;
+            color: var(--accent-color);
+        }
+        .social-links {
+            margin-top: 8px;
+        }
+        .social-links a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .notice-banner {
+            background-color: #faedcd;
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin: 20px auto;
+            max-width: 800px;
+            border-radius: 8px;
+            font-size: 14px;
+            line-height: 1.5;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+        .notice-banner h3 {
+            color: var(--accent-color);
+            margin-bottom: 5px;
+        }
+        .categories {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            overflow-x: auto;
+            padding: 15px;
+            background: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+        .cat-btn {
+            background: var(--secondary-color);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+            color: var(--text-color);
+            white-space: nowrap;
+            transition: 0.3s;
+        }
+        .cat-btn.active, .cat-btn:hover {
+            background: var(--accent-color);
+            color: white;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+        .category-section {
+            margin-bottom: 40px;
+        }
+        .category-title {
+            font-size: 20px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 5px;
+            color: var(--accent-color);
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .product-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s;
+        }
+        .product-card:hover {
+            transform: translateY(-4px);
+        }
+        .product-img-box {
+            background: #fceade;
+            padding: 15px;
+            text-align: center;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .product-img-box img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 8px 8px rgba(0,0,0,0.15));
+        }
+        .product-info {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        .product-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        .product-desc {
+            font-size: 13px;
+            color: #7f5539;
+            margin-bottom: 10px;
+            flex-grow: 1;
+        }
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+        .product-price {
+            font-weight: 700;
+            font-size: 16px;
+            color: var(--accent-color);
+        }
+        .add-btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 13px;
+        }
+        .add-btn:hover {
+            background-color: #9a4c19;
+        }
+        /* Carrito flotante */
+        .cart-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: white;
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+        }
+        .cart-total {
+            font-size: 18px;
+            font-weight: 700;
+        }
+        .checkout-btn {
+            background-color: #25d366;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+        .options-select {
+            margin-bottom: 10px;
+            width: 100%;
+            padding: 6px;
+            border-radius: 6px;
+            border: 1px solid #d4a373;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <img src="https://i.postimg.cc/mZvCsvZC/Pastel-Imposible-Rebanada.png" alt="Logo Kaprichos" id="logo-img">
+        </div>
+        <h1>Kaprichos - Hechos con amor</h1>
+        <div class="social-links">
+            <a href="https://www.instagram.com/kaprichos.ks?cplk=bWF0OGxzaG5hbzBo&utm_source=qr" target="_blank">📸 Instagram: @kaprichos.ks</a>
+        </div>
+    </header>
+
+    <div class="notice-banner">
+        <h3>¿QUIERES HACER UN PEDIDO? Agenda con mínimo 2 días de anticipación.</h3>
+        <p>Para confirmar tu pedido, envíanos: 🍰 Producto y tamaño | 🍓 Topping | 📅 Fecha de entrega | 🕒 Horario aproximado | 📍 ¿Recogerás o necesitas envío?</p>
+    </div>
+
+    <div class="container">
+        <div id="catalog">
+            <!-- Los productos se cargarán dinámicamente -->
+        </div>
+    </div>
+
+    <div class="cart-bar">
+        <div>
+            <span>Total: </span>
+            <span class="cart-total" id="cart-total">$0 MXN</span>
+        </div>
+        <button class="checkout-btn" onclick="checkoutWhatsApp()">
+            💬 Quiero realizar mi pedido
+        </button>
+    </div>
+
+    <script>
+        // Datos basados en tu Google Sheets
+        const products = [
+            { cat: "Los Favoritos", name: "Rebanada de Cheesecake (Elige Topping)", desc: "Cremoso relleno de queso Philadelphia sobre base de galleta.", price: 85, img: "https://i.postimg.cc/44Q2738F/Captura-de-pantalla-2026-10-23-a-la-s-7-48-26-p-m.png", hasTopping: true },
+            { cat: "Los Favoritos", name: "Vasito Postre de Limón", desc: "Vasito individual fresco y cremoso.", price: 30, img: "https://i.postimg.cc/JnC5zY2K/Captura-de-pantalla-2026-10-22-a-la-s-10-04-35-p-m.png" },
+            { cat: "Los Favoritos", name: "Vasito Arroz con Leche", desc: "Vasito individual tradicional con toque especial.", price: 30, img: "https://i.postimg.cc/JnC5zY2K/Captura-de-pantalla-2026-10-22-a-la-s-10-04-35-p-m.png" },
+            
+            { cat: "Cheesecakes", name: "Mini Kapricho (4-6 porciones)", desc: "Cremoso relleno de queso Philadelphia sobre base de galleta.", price: 300, img: "https://i.postimg.cc/G3WGCW3D/Mini-k.png" },
+            { cat: "Cheesecakes", name: "Clásico (8-10 porciones)", desc: "Cremoso relleno de queso Philadelphia sobre base de galleta.", price: 600, img: "https://i.postimg.cc/G3WGCW3D/Mini-k.png" },
+            { cat: "Cheesecakes", name: "Familiar (14-16 porciones)", desc: "Cremoso relleno de queso Philadelphia sobre base de galleta.", price: 800, img: "https://i.postimg.cc/9Q6qJz31/Familiar-Cheesecake.png" },
+
+            { cat: "Pastel Imposible", name: "Rebanada Pastel Imposible", desc: "Pastel de chocolate y flan cremoso, con dulce de leche y nuez.", price: 60, img: "https://i.postimg.cc/mZvCsvZC/Pastel-Imposible-Rebanada.png" },
+            { cat: "Pastel Imposible", name: "Clásico (8-10 porciones)", desc: "Pastel de chocolate y flan cremoso, con dulce de leche y nuez.", price: 300, img: "https://i.postimg.cc/mZvCsvZC/Pastel-Imposible-Rebanada.png" },
+            { cat: "Pastel Imposible", name: "Familiar (14-16 porciones)", desc: "Pastel de chocolate y flan cremoso, con dulce de leche y nuez.", price: 500, img: "https://i.postimg.cc/mZvCsvZC/Pastel-Imposible-Rebanada.png" },
+
+            { cat: "Galletas Estilo NY", name: "Paquete 2 piezas", desc: "Sabores a elegir: Lotus Biscoff, Oreo, Chispas de chocolate, Red Velvet", price: 90, img: "https://i.postimg.cc/mkfhYv8T/2-galletas.png", isCookieBox: true, count: 2 },
+            { cat: "Galletas Estilo NY", name: "Paquete 4 piezas", desc: "Sabores a elegir: Lotus Biscoff, Oreo, Chispas de chocolate, Red Velvet", price: 170, img: "https://i.postimg.cc/MH2X7CdZ/4-galletas.png", isCookieBox: true, count: 4 },
+            { cat: "Galletas Estilo NY", name: "Paquete 6 piezas", desc: "Sabores a elegir: Lotus Biscoff, Oreo, Chispas de chocolate, Red Velvet", price: 250, img: "https://i.postimg.cc/qqVgsPjk/6-galletas.png", isCookieBox: true, count: 6 },
+            { cat: "Galletas Estilo NY", name: "Paquete 12 piezas", desc: "Sabores a elegir: Lotus Biscoff, Oreo, Chispas de chocolate, Red Velvet", price: 500, img: "https://i.postimg.cc/fynkcGBz/12-galletas.png", isCookieBox: true, count: 12 },
+            
+            { cat: "Brownies", name: "Brownies - Muy Pronto", desc: "Próximamente disponible", price: 0, img: "https://i.postimg.cc/JnC5zY2K/Captura-de-pantalla-2026-10-22-a-la-s-10-04-35-p-m.png", comingSoon: true }
+        ];
+
+        let cart = [];
+
+        function renderCatalog() {
+            const catalogEl = document.getElementById('catalog');
+            const categories = [...new Set(products.map(p => p.cat))];
+            
+            let html = '';
+            categories.forEach(cat => {
+                html += `<div class="category-section">
+                    <h2 class="category-title">${cat}</h2>
+                    <div class="products-grid">`;
+                
+                products.filter(p => p.cat === cat).forEach((p, index) => {
+                    let extraHtml = '';
+                    if (p.hasTopping) {
+                        extraHtml += `<select id="topping-${index}" class="options-select">
+                            <option value="Frutos Rojos">Topping: Frutos Rojos</option>
+                            <option value="Galleta Biscoff">Topping: Galleta Biscoff</option>
+                            <option value="Tortuga">Topping: Tortuga (Chocolate, cajeta, nuez)</option>
+                        </select>`;
+                    }
+                    if (p.isCookieBox) {
+                        extraHtml += `<div style="font-size:12px; margin-bottom:5px; font-weight:600;">Elige tus ${p.count} sabores:</div>`;
+                        for(let i=1; i<=p.count; i++) {
+                            extraHtml += `<select id="cookie-${index}-${i}" class="options-select cookie-sel">
+                                <option value="Chispas de chocolate">Chispas de chocolate</option>
+                                <option value="Lotus Biscoff">Lotus Biscoff</option>
+                                <option value="Oreo">Oreo</option>
+                                <option value="Red Velvet">Red Velvet</option>
+                            </select>`;
+                        }
+                    }
+
+                    html += `
+                        <div class="product-card">
+                            <div class="product-img-box">
+                                <img src="${p.img}" alt="${p.name}">
+                            </div>
+                            <div class="product-info">
+                                <div class="product-title">${p.name}</div>
+                                <div class="product-desc">${p.desc}</div>
+                                ${extraHtml}
+                                <div class="product-footer">
+                                    <div class="product-price">${p.comingSoon ? 'Próximamente' : '$' + p.price + ' MXN'}</div>
+                                    ${!p.comingSoon ? `<button class="add-btn" onclick="addToCart(${index})">Agregar</button>` : ''}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                html += `</div></div>`;
+            });
+            catalogEl.innerHTML = html;
+        }
+
+        function addToCart(index) {
+            let prod = products[index];
+            let itemDetails = prod.name;
+            let price = prod.price;
+
+            if (prod.hasTopping) {
+                let topping = document.getElementById(`topping-${index}`).value;
+                itemDetails += ` (Topping: ${topping})`;
+            }
+
+            if (prod.isCookieBox) {
+                let flavors = [];
+                for(let i=1; i<=prod.count; i++) {
+                    flavors.push(document.getElementById(`cookie-${index}-${i}`).value);
+                }
+                itemDetails += ` [Sabores: ${flavors.join(', ')}]`;
+            }
+
+            cart.push({ name: itemDetails, price: price });
+            updateCartTotal();
+            alert('¡Producto agregado al carrito!');
+        }
+
+        function updateCartTotal() {
+            let total = cart.reduce((sum, item) => sum + item.price, 0);
+            document.getElementById('cart-total').innerText = `$${total} MXN`;
+        }
+
+        function checkoutWhatsApp() {
+            if (cart.length === 0) {
+                alert('Tu carrito está vacío. Agrega algunos postres primero.');
+                return;
+            }
+
+            let message = "Hola! 🍰 Me gustaría hacer el siguiente pedido en Kaprichos:%0A%0A";
+            cart.forEach((item, idx) => {
+                message += `${idx + 1}. ${item.name} - $${item.price} MXN%0A`;
+            });
+
+            let total = cart.reduce((sum, item) => sum + item.price, 0);
+            message += `%0A*Total a pagar: $${total} MXN*%0A%0A`;
+            message += "📅 Fecha de entrega deseada:%0A🕒 Horario aproximado:%0A📍 ¿Recogerás o necesitas envío?:%0A(Recuerda agendar con 2 días de anticipación)";
+
+            let phone = "528131560843";
+            window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+        }
+
+        renderCatalog();
+    </script>
+</body>
+</html>
