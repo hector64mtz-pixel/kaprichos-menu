@@ -190,10 +190,10 @@
             gap: 8px;
             text-decoration: none;
         }
-        .options-select {
+        .options-select, .options-input {
             margin-bottom: 10px;
             width: 100%;
-            padding: 6px;
+            padding: 8px;
             border-radius: 6px;
             border: 1px solid #d4a373;
             font-size: 13px;
@@ -208,7 +208,7 @@
         </div>
         <h1>Kaprichos - Hechos con amor</h1>
         <div class="social-links">
-            <a href="https://www.instagram.com/kaprichos.ks?cplk=bWF0OGxzaG5hbzBo&utm_source=qr" target="_blank">📸 Instagram: @kaprichos.ks</a>
+            <a href="url?id=35" target="_blank">📸 Instagram: @kaprichos.ks</a>
         </div>
     </header>
 
@@ -257,10 +257,10 @@
             { cat: "Pastel Imposible", name: "Clásico (8-10 porciones)", desc: "Pastel de chocolate combinado con suave flan napolitano, bañado en dulce de leche y nuez.", price: 300, img: "https://i.postimg.cc/WpBgvBph/Imposible-mediano.png" },
             { cat: "Pastel Imposible", name: "Familiar (14-16 porciones)", desc: "Deliciosa receta de pastel imposible en tamaño familiar, perfecto para compartir momentos especiales.", price: 500, img: "https://i.postimg.cc/T2zg6z2m/Imposible-Familiar.png" },
 
-            { cat: "Galletas Estilo NY", name: "Paquete 2 piezas", desc: "Sabores a elegir: Lotus Biscoff, Oreo, Chispas de chocolate, Red Velvet", price: 90, img: "https://i.postimg.cc/mkfhYv8T/2-galletas.png", isCookieBox: true, count: 2 },
-            { cat: "Galletas Estilo NY", name: "Paquete 4 piezas", desc: "Sabores a elegir: Lotus Biscoff, Oreo, Chispas de chocolate, Red Velvet", price: 170, img: "https://i.postimg.cc/MH2X7CdZ/4-galletas.png", isCookieBox: true, count: 4 },
-            { cat: "Galletas Estilo NY", name: "Paquete 6 piezas", desc: "Sabores a elegir: Lotus Biscoff, Oreo, Chispas de chocolate, Red Velvet", price: 250, img: "https://i.postimg.cc/qqVgsPjk/6-galletas.png", isCookieBox: true, count: 6 },
-            { cat: "Galletas Estilo NY", name: "Paquete 12 piezas", desc: "Sabores a elegir: Lotus Biscoff, Oreo, Chispas de chocolate, Red Velvet", price: 500, img: "https://i.postimg.cc/fynkcGBz/12-galletas.png", isCookieBox: true, count: 12 },
+            { cat: "Galletas Estilo NY", name: "Paquete 2 piezas", desc: "Sabores a elegir: Lotus Biscoff, Oreo, Chispas de chocolate, Red Velvet", price: 90, img: "https://i.postimg.cc/mkfhYv8T/2-galletas.png", isCookieBox: true },
+            { cat: "Galletas Estilo NY", name: "Paquete 4 piezas", desc: "Sabores a elegir: Lotus Biscoff, Oreo, Chispas de chocolate, Red Velvet", price: 170, img: "https://i.postimg.cc/MH2X7CdZ/4-galletas.png", isCookieBox: true },
+            { cat: "Galletas Estilo NY", name: "Paquete 6 piezas", desc: "Sabores a elegir: Lotus Biscoff, Oreo, Chispas de chocolate, Red Velvet", price: 250, img: "https://i.postimg.cc/qqVgsPjk/6-galletas.png", isCookieBox: true },
+            { cat: "Galletas Estilo NY", name: "Paquete 12 piezas", desc: "Sabores a elegir: Lotus Biscoff, Oreo, Chispas de chocolate, Red Velvet", price: 500, img: "https://i.postimg.cc/fynkcGBz/12-galletas.png", isCookieBox: true },
             
             { cat: "Brownies", name: "Brownies - Muy Pronto", desc: "", price: 0, isQuestionMark: true, comingSoon: true }
         ];
@@ -296,15 +296,7 @@
                         </select>`;
                     }
                     if (p.isCookieBox) {
-                        extraHtml += `<div style="font-size:12px; margin-bottom:5px; font-weight:600;">Elige tus ${p.count} sabores:</div>`;
-                        for(let i=1; i<=p.count; i++) {
-                            extraHtml += `<select id="cookie-${realIndex}-${i}" class="options-select">
-                                <option value="Chispas de chocolate">Chispas de chocolate</option>
-                                <option value="Lotus Biscoff">Lotus Biscoff</option>
-                                <option value="Oreo">Oreo</option>
-                                <option value="Red Velvet">Red Velvet</option>
-                            </select>`;
-                        }
+                        extraHtml += `<input type="text" id="cookie-note-${realIndex}" class="options-input" placeholder="Ej. 2 Biscoff, 1 Oreo, 1 Chispas">`;
                     }
 
                     html += `
@@ -351,11 +343,12 @@
             }
 
             if (prod.isCookieBox) {
-                let flavors = [];
-                for(let i=1; i<=prod.count; i++) {
-                    flavors.push(document.getElementById(`cookie-${index}-${i}`).value);
+                let noteInput = document.getElementById(`cookie-note-${index}`).value.trim();
+                if(noteInput) {
+                    itemDetails += ` [Sabores: ${noteInput}]`;
+                } else {
+                    itemDetails += ` [Sabores: Surtidos]`;
                 }
-                itemDetails += ` [Sabores: ${flavors.join(', ')}]`;
             }
 
             cart.push({ name: itemDetails, price: price });
