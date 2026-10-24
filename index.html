@@ -23,97 +23,121 @@
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
-            padding-bottom: 140px;
+            padding-bottom: 120px;
+        }
+        /* Video Banner */
+        .hero-video-container {
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+            background: #000;
+        }
+        .hero-video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.85;
         }
         header {
             background-color: var(--card-bg);
-            padding: 20px;
+            padding: 25px 20px;
             text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+            position: relative;
         }
         .logo-container img {
-            width: 80px;
-            height: 80px;
+            width: 90px;
+            height: 90px;
             border-radius: 50%;
             object-fit: cover;
+            margin-top: -65px;
             margin-bottom: 10px;
-            border: 3px solid var(--primary-color);
+            border: 4px solid #fff;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 10;
         }
         h1 {
-            font-size: 24px;
+            font-size: 26px;
             color: var(--accent-color);
+            font-weight: 700;
         }
         .insta-btn {
-            display: inline-block;
-            margin-top: 10px;
-            background-color: #e1306c;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 12px;
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
             color: white;
-            padding: 8px 16px;
-            border-radius: 20px;
+            padding: 8px 18px;
+            border-radius: 25px;
             text-decoration: none;
             font-size: 13px;
             font-weight: 500;
-            transition: 0.3s;
+            box-shadow: 0 4px 12px rgba(220, 39, 67, 0.2);
+            transition: transform 0.2s;
         }
         .insta-btn:hover {
-            background-color: #c13584;
+            transform: translateY(-2px);
         }
         .notice-banner {
-            background-color: #faedcd;
-            border-left: 5px solid var(--accent-color);
-            padding: 15px;
-            margin: 20px auto;
-            max-width: 800px;
-            border-radius: 8px;
+            background-color: var(--secondary-color);
+            border-left: 6px solid var(--accent-color);
+            padding: 18px 20px;
+            margin: 25px auto;
+            max-width: 900px;
+            border-radius: 12px;
             font-size: 14px;
-            line-height: 1.5;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            line-height: 1.6;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
             text-align: center;
         }
         .notice-banner h3 {
             color: var(--accent-color);
-            margin-bottom: 5px;
+            margin-bottom: 6px;
+            font-size: 16px;
         }
         .container {
-            max-width: 1000px;
-            margin: 20px auto;
-            padding: 0 15px;
+            max-width: 1050px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
         .category-section {
-            margin-bottom: 40px;
+            margin-bottom: 50px;
         }
         .category-title {
-            font-size: 20px;
-            margin-bottom: 15px;
+            font-size: 22px;
+            margin-bottom: 20px;
             border-bottom: 2px solid var(--secondary-color);
-            padding-bottom: 5px;
+            padding-bottom: 8px;
             color: var(--accent-color);
+            font-weight: 600;
         }
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 25px;
         }
         .product-card {
             background: var(--card-bg);
-            border-radius: 12px;
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
             display: flex;
             flex-direction: column;
-            transition: transform 0.2s;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(212, 163, 115, 0.15);
         }
         .product-card:hover {
-            transform: translateY(-4px);
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(188, 108, 37, 0.12);
         }
         .product-img-box {
-            background: #fceade;
-            padding: 15px;
+            background: linear-gradient(135deg, #fceade 0%, #faedcd 100%);
+            padding: 20px;
             text-align: center;
-            height: 200px;
+            height: 210px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -122,46 +146,54 @@
             max-height: 100%;
             max-width: 100%;
             object-fit: contain;
-            filter: drop-shadow(0 8px 8px rgba(0,0,0,0.15));
+            filter: drop-shadow(0 10px 10px rgba(0,0,0,0.12));
+            transition: transform 0.3s;
+        }
+        .product-card:hover .product-img-box img {
+            transform: scale(1.05);
         }
         .product-info {
-            padding: 15px;
+            padding: 20px;
             display: flex;
             flex-direction: column;
             flex-grow: 1;
         }
         .product-title {
-            font-size: 16px;
+            font-size: 17px;
             font-weight: 600;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
+            color: var(--text-color);
         }
         .product-desc {
             font-size: 13px;
-            color: #7f5539;
-            margin-bottom: 10px;
+            color: #8c5830;
+            margin-bottom: 15px;
             flex-grow: 1;
+            line-height: 1.4;
         }
         .product-footer {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-top: 10px;
+            border-top: 1px solid #f4ecd8;
+            padding-top: 12px;
         }
         .product-price {
             font-weight: 700;
-            font-size: 16px;
+            font-size: 17px;
             color: var(--accent-color);
         }
         .add-btn {
             background-color: var(--accent-color);
             color: white;
             border: none;
-            padding: 6px 12px;
-            border-radius: 6px;
+            padding: 8px 16px;
+            border-radius: 8px;
             cursor: pointer;
-            font-weight: 500;
+            font-weight: 600;
             font-size: 13px;
-            transition: 0.2s;
+            transition: background 0.2s;
         }
         .add-btn:hover {
             background-color: #9a4c19;
@@ -169,30 +201,34 @@
         .added-feedback {
             background-color: #2a9d8f !important;
         }
+        /* Barra de Carrito Estilizada */
         .cart-bar {
             position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
-            background: white;
-            box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
-            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 -6px 25px rgba(0,0,0,0.08);
+            padding: 16px 25px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
+            border-top: 2px solid var(--secondary-color);
         }
         .cart-info {
             display: flex;
             flex-direction: column;
         }
         .cart-total {
-            font-size: 18px;
+            font-size: 19px;
             font-weight: 700;
+            color: var(--accent-color);
         }
         .view-cart-link {
             font-size: 12px;
-            color: var(--accent-color);
+            color: #8c5830;
             text-decoration: underline;
             cursor: pointer;
             background: none;
@@ -200,22 +236,27 @@
             text-align: left;
             padding: 0;
             margin-top: 2px;
+            font-weight: 500;
         }
         .checkout-btn {
             background-color: #25d366;
             color: white;
             border: none;
-            padding: 10px 20px;
-            border-radius: 8px;
+            padding: 12px 24px;
+            border-radius: 12px;
             font-weight: 600;
             font-size: 15px;
             cursor: pointer;
             display: flex;
             align-items: center;
             gap: 8px;
-            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+            transition: transform 0.2s;
         }
-        /* Modal del Carrito */
+        .checkout-btn:hover {
+            transform: scale(1.02);
+        }
+        /* Modal de Carrito Hermoso */
         .cart-modal {
             display: none;
             position: fixed;
@@ -223,86 +264,121 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.5);
+            background: rgba(88, 47, 14, 0.4);
+            backdrop-filter: blur(5px);
             z-index: 2000;
             justify-content: center;
             align-items: center;
         }
         .cart-content {
-            background: white;
+            background: #fff;
             width: 90%;
-            max-width: 480px;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            max-width: 500px;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
             max-height: 90vh;
             overflow-y: auto;
+            border: 2px solid var(--secondary-color);
         }
         .cart-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             border-bottom: 2px solid var(--secondary-color);
-            padding-bottom: 10px;
+            padding-bottom: 12px;
+        }
+        .cart-header h3 {
+            color: var(--accent-color);
+            font-size: 20px;
         }
         .close-cart {
-            background: none;
+            background: #faedcd;
             border: none;
-            font-size: 20px;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            font-size: 16px;
             cursor: pointer;
             color: var(--text-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+        .close-cart:hover {
+            background: var(--primary-color);
+            color: white;
         }
         .cart-items-list {
             list-style: none;
-            margin-bottom: 15px;
-            max-height: 200px;
+            margin-bottom: 20px;
+            max-height: 220px;
             overflow-y: auto;
+            padding-right: 5px;
         }
         .cart-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 8px 0;
-            border-bottom: 1px solid #eee;
+            padding: 12px 0;
+            border-bottom: 1px solid #f4ecd8;
             font-size: 13px;
         }
         .remove-item {
             color: #d90429;
-            background: none;
+            background: #ffe5e9;
             border: none;
+            padding: 4px 10px;
+            border-radius: 6px;
             cursor: pointer;
-            font-size: 12px;
-            margin-left: 10px;
+            font-size: 11px;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+        .remove-item:hover {
+            background: #f8d7da;
         }
         .form-group {
-            margin-bottom: 12px;
+            margin-bottom: 15px;
         }
         .form-group label {
             display: block;
             font-size: 12px;
             font-weight: 600;
-            margin-bottom: 4px;
+            margin-bottom: 6px;
             color: var(--text-color);
         }
         .form-control {
             width: 100%;
-            padding: 8px;
-            border-radius: 6px;
+            padding: 10px 12px;
+            border-radius: 10px;
             border: 1px solid #d4a373;
             font-size: 13px;
+            background: #fff9f5;
         }
         .options-select, .options-input {
             margin-bottom: 10px;
             width: 100%;
-            padding: 8px;
-            border-radius: 6px;
+            padding: 10px;
+            border-radius: 10px;
             border: 1px solid #d4a373;
             font-size: 13px;
+            background: #fff9f5;
+            color: var(--text-color);
         }
     </style>
 </head>
 <body>
+
+    <!-- Video de Portada -->
+    <div class="hero-video-container">
+        <video autoplay muted loop playsinline>
+            <source src="portada.mp4" type="video/mp4">
+            Tu navegador no soporta videos.
+        </video>
+    </div>
 
     <header>
         <div class="logo-container">
@@ -316,7 +392,7 @@
 
     <div class="notice-banner">
         <h3>¿QUIERES HACER UN PEDIDO? Agenda con mínimo 2 días de anticipación.</h3>
-        <p>Para confirmar tu pedido, envíanos los datos en el carrito 🍰📅</p>
+        <p>Para confirmar tu pedido, selecciona tus productos y completa los datos en el carrito 🍰📅</p>
     </div>
 
     <div class="container">
@@ -337,21 +413,20 @@
         </button>
     </div>
 
-    <!-- Modal para ver el carrito y llenar formulario -->
+    <!-- Modal para ver el carrito y formulario -->
     <div class="cart-modal" id="cartModal">
         <div class="cart-content">
             <div class="cart-header">
-                <h3>Finalizar tu Pedido</h3>
+                <h3>Finalizar tu Pedido 🛍️</h3>
                 <button class="close-cart" onclick="toggleCartModal()">✕</button>
             </div>
             <ul class="cart-items-list" id="cartItemsList">
                 <!-- Productos agregados -->
             </ul>
-            <div style="font-weight: 700; text-align: right; margin-bottom: 15px; font-size: 15px;">
+            <div style="font-weight: 700; text-align: right; margin-bottom: 20px; font-size: 16px; color: var(--accent-color);">
                 Total: <span id="modal-cart-total">$0 MXN</span>
             </div>
 
-            <!-- Formulario de Pedido -->
             <div class="form-group">
                 <label>📅 Fecha de entrega deseada (Mínimo 2 días de anticipación):</label>
                 <input type="date" id="orderDate" class="form-control">
@@ -365,7 +440,7 @@
                 <input type="text" id="orderType" class="form-control" placeholder="Ej. Paso a recoger / Envío a Colonia Centro...">
             </div>
 
-            <button class="checkout-btn" style="width: 100%; justify-content: center; margin-top: 10px;" onclick="checkoutWhatsApp()">
+            <button class="checkout-btn" style="width: 100%; justify-content: center; margin-top: 15px; padding: 14px;" onclick="checkoutWhatsApp()">
                 💬 Enviar pedido por WhatsApp
             </button>
         </div>
