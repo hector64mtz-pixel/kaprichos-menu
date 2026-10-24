@@ -231,11 +231,11 @@
         .cart-content {
             background: white;
             width: 90%;
-            max-width: 450px;
+            max-width: 480px;
             padding: 25px;
             border-radius: 12px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            max-height: 80vh;
+            max-height: 90vh;
             overflow-y: auto;
         }
         .cart-header {
@@ -256,7 +256,7 @@
         .cart-items-list {
             list-style: none;
             margin-bottom: 15px;
-            max-height: 250px;
+            max-height: 200px;
             overflow-y: auto;
         }
         .cart-item {
@@ -274,6 +274,23 @@
             cursor: pointer;
             font-size: 12px;
             margin-left: 10px;
+        }
+        .form-group {
+            margin-bottom: 12px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: var(--text-color);
+        }
+        .form-control {
+            width: 100%;
+            padding: 8px;
+            border-radius: 6px;
+            border: 1px solid #d4a373;
+            font-size: 13px;
         }
         .options-select, .options-input {
             margin-bottom: 10px;
@@ -299,7 +316,7 @@
 
     <div class="notice-banner">
         <h3>¿QUIERES HACER UN PEDIDO? Agenda con mínimo 2 días de anticipación.</h3>
-        <p>Para confirmar tu pedido, envíanos: 🍰 Producto y tamaño | 🍓 Topping | 📅 Fecha de entrega | 🕒 Horario aproximado | 📍 ¿Recogerás o necesitas envío?</p>
+        <p>Para confirmar tu pedido, envíanos los datos en el carrito 🍰📅</p>
     </div>
 
     <div class="container">
@@ -313,27 +330,42 @@
                 <span>Total: </span>
                 <span class="cart-total" id="cart-total">$0 MXN</span>
             </div>
-            <button class="view-cart-link" onclick="toggleCartModal()">Ver productos en el carrito 🛒</button>
+            <button class="view-cart-link" onclick="toggleCartModal()">Ver carrito y completar datos 🛒</button>
         </div>
-        <button class="checkout-btn" onclick="checkoutWhatsApp()">
+        <button class="checkout-btn" onclick="toggleCartModal()">
             💬 Realizar mi pedido
         </button>
     </div>
 
-    <!-- Modal para ver el carrito -->
+    <!-- Modal para ver el carrito y llenar formulario -->
     <div class="cart-modal" id="cartModal">
         <div class="cart-content">
             <div class="cart-header">
-                <h3>Tu Carrito de Pedido</h3>
+                <h3>Finalizar tu Pedido</h3>
                 <button class="close-cart" onclick="toggleCartModal()">✕</button>
             </div>
             <ul class="cart-items-list" id="cartItemsList">
                 <!-- Productos agregados -->
             </ul>
-            <div style="font-weight: 700; text-align: right; margin-bottom: 15px; font-size: 16px;">
+            <div style="font-weight: 700; text-align: right; margin-bottom: 15px; font-size: 15px;">
                 Total: <span id="modal-cart-total">$0 MXN</span>
             </div>
-            <button class="checkout-btn" style="width: 100%; justify-content: center;" onclick="checkoutWhatsApp()">
+
+            <!-- Formulario de Pedido -->
+            <div class="form-group">
+                <label>📅 Fecha de entrega deseada (Mínimo 2 días de anticipación):</label>
+                <input type="date" id="orderDate" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>🕒 Horario aproximado:</label>
+                <input type="text" id="orderTime" class="form-control" placeholder="Ej. 4:00 PM">
+            </div>
+            <div class="form-group">
+                <label>📍 ¿Recogerás o necesitas envío? (Indica dirección si es envío):</label>
+                <input type="text" id="orderType" class="form-control" placeholder="Ej. Paso a recoger / Envío a Colonia Centro...">
+            </div>
+
+            <button class="checkout-btn" style="width: 100%; justify-content: center; margin-top: 10px;" onclick="checkoutWhatsApp()">
                 💬 Enviar pedido por WhatsApp
             </button>
         </div>
@@ -465,7 +497,6 @@
             cart.push({ name: itemDetails, price: price });
             updateCart();
 
-            // Animación sutil en el botón en lugar de la alerta estorbosa
             let btn = document.getElementById(`btn-${index}`);
             let originalText = btn.innerText;
             btn.innerText = "¡Agregado! ✓";
@@ -515,6 +546,15 @@
                 return;
             }
 
+            let date = document.getElementById('orderDate').value;
+            let time = document.getElementById('orderTime').value;
+            let type = document.getElementById('orderType').value;
+
+            if (!date || !time || !type) {
+                alert('Por favor completa los datos de fecha, horario y tipo de entrega en el carrito.');
+                return;
+            }
+
             let message = "Hola! 🍰 Me gustaría hacer el siguiente pedido en Kaprichos:%0A%0A";
             cart.forEach((item, idx) => {
                 message += `${idx + 1}. ${item.name} - $${item.price} MXN%0A`;
@@ -522,7 +562,9 @@
 
             let total = cart.reduce((sum, item) => sum + item.price, 0);
             message += `%0A*Total a pagar: $${total} MXN*%0A%0A`;
-            message += "📅 Fecha de entrega deseada:%0A🕒 Horario aproximado:%0A📍 ¿Recogerás o necesitas envío?:%0A(Recuerda agendar con 2 días de anticipación)";
+            message += `📅 Fecha de entrega: ${date}%0A`;
+            message += `🕒 Horario aproximado: ${time}%0A`;
+            message += `📍 Entrega / Recogida: ${type}%0A`;
 
             let phone = "528131560843";
             window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
