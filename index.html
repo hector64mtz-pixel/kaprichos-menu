@@ -25,14 +25,13 @@
             color: var(--text-color);
             padding-bottom: 130px;
         }
-        /* Video Banner Estilizado */
+        /* Video Banner Limpio */
         .hero-video-container {
             width: 100%;
             height: 240px;
             overflow: hidden;
             position: relative;
-            background: #faedcd;
-            box-shadow: inset 0 -20px 30px rgba(0,0,0,0.15);
+            background: #fff;
         }
         .hero-video-container video {
             width: 100%;
@@ -44,7 +43,6 @@
             background-color: var(--card-bg);
             padding: 15px 20px 25px 20px;
             text-align: center;
-            box-shadow: 0 4px 25px rgba(88, 47, 14, 0.05);
             position: relative;
         }
         .logo-container img {
@@ -73,36 +71,34 @@
             margin-top: 14px;
             background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
             color: white;
-            padding: 9px 20px;
+            padding: 8px 18px;
             border-radius: 30px;
             text-decoration: none;
             font-size: 13px;
             font-weight: 500;
-            box-shadow: 0 6px 15px rgba(220, 39, 67, 0.25);
-            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(220, 39, 67, 0.2);
+            transition: transform 0.2s;
         }
         .insta-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(220, 39, 67, 0.35);
         }
-        /* Insignia de Aviso Elegante */
+        /* Insignia de Aviso Minimalista */
         .notice-banner {
-            background: linear-gradient(135deg, #faedcd 0%, #fefae0 100%);
-            border: 1px solid rgba(212, 163, 115, 0.4);
-            border-left: 6px solid var(--accent-color);
-            padding: 20px 25px;
-            margin: 30px auto;
+            background: #fff;
+            border: 1px solid #faedcd;
+            padding: 18px 20px;
+            margin: 25px auto;
             max-width: 920px;
             border-radius: 14px;
             font-size: 14px;
             line-height: 1.6;
-            box-shadow: 0 6px 20px rgba(188, 108, 37, 0.06);
+            box-shadow: 0 4px 15px rgba(188, 108, 37, 0.04);
             text-align: center;
         }
         .notice-banner h3 {
             color: var(--accent-color);
-            margin-bottom: 6px;
-            font-size: 16px;
+            margin-bottom: 4px;
+            font-size: 15px;
             font-weight: 600;
         }
         .container {
@@ -120,54 +116,53 @@
             padding-bottom: 10px;
             color: var(--accent-color);
             font-weight: 600;
-            letter-spacing: -0.3px;
+            text-align: center;
         }
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
             gap: 25px;
         }
-        /* Tarjetas de Producto Gourmet */
+        /* Tarjetas de Producto Minimalistas y Centradas */
         .product-card {
             background: var(--card-bg);
             border-radius: 18px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(88, 47, 14, 0.04);
+            box-shadow: 0 8px 25px rgba(88, 47, 14, 0.04);
             display: flex;
             flex-direction: column;
-            transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
-            border: 1px solid rgba(212, 163, 115, 0.2);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(212, 163, 115, 0.15);
+            text-align: center;
         }
         .product-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 18px 35px rgba(188, 108, 37, 0.12);
-            border-color: var(--primary-color);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(188, 108, 37, 0.1);
         }
         .product-img-box {
-            background: radial-gradient(circle, #fff3eb 0%, #faedcd 100%);
-            padding: 25px;
+            background: #ffffff;
+            padding: 20px;
             text-align: center;
-            height: 220px;
+            height: 210px;
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
         }
         .product-img-box img {
             max-height: 100%;
             max-width: 100%;
             object-fit: contain;
-            filter: drop-shadow(0 12px 12px rgba(88, 47, 14, 0.15));
-            transition: transform 0.4s ease;
+            transition: transform 0.3s ease;
         }
         .product-card:hover .product-img-box img {
-            transform: scale(1.08);
+            transform: scale(1.06);
         }
         .product-info {
             padding: 20px;
             display: flex;
             flex-direction: column;
             flex-grow: 1;
+            align-items: center;
         }
         .product-title {
             font-size: 17px;
@@ -181,14 +176,17 @@
             margin-bottom: 15px;
             flex-grow: 1;
             line-height: 1.5;
+            text-align: center;
         }
         .product-footer {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
             margin-top: 10px;
             border-top: 1px solid #f9f1e7;
             padding-top: 14px;
+            align-items: center;
         }
         .product-price {
             font-weight: 700;
@@ -199,83 +197,63 @@
             background-color: var(--accent-color);
             color: white;
             border: none;
-            padding: 9px 18px;
+            padding: 10px 24px;
             border-radius: 10px;
             cursor: pointer;
             font-weight: 600;
             font-size: 13px;
-            transition: all 0.2s ease;
-            box-shadow: 0 4px 12px rgba(188, 108, 37, 0.2);
+            transition: background 0.2s;
+            width: 100%;
         }
         .add-btn:hover {
             background-color: #9a4c19;
-            transform: translateY(-1px);
         }
         .added-feedback {
             background-color: #2a9d8f !important;
-            box-shadow: 0 4px 12px rgba(42, 157, 143, 0.3) !important;
         }
-        /* Barra Inferior del Carrito Profesional */
-        .cart-bar {
+
+        /* Botones Flotantes Minimalistas (Sin barra de fondo sólida) */
+        .floating-cart-container {
             position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.92);
-            backdrop-filter: blur(12px);
-            box-shadow: 0 -8px 30px rgba(88, 47, 14, 0.08);
-            padding: 18px 30px;
+            bottom: 25px;
+            right: 25px;
             display: flex;
-            justify-content: space-between;
+            gap: 12px;
             align-items: center;
             z-index: 1000;
-            border-top: 2px solid var(--secondary-color);
         }
-        .cart-info {
-            display: flex;
-            flex-direction: column;
-        }
-        .cart-total {
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--accent-color);
-        }
-        .view-cart-link {
-            font-size: 12px;
-            color: #8c5830;
-            text-decoration: underline;
-            cursor: pointer;
-            background: none;
-            border: none;
-            text-align: left;
-            padding: 0;
-            margin-top: 3px;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-        .view-cart-link:hover {
-            color: var(--accent-color);
-        }
-        .checkout-btn {
-            background-color: #25d366;
-            color: white;
-            border: none;
-            padding: 13px 26px;
-            border-radius: 14px;
+        .floating-btn {
+            background: #ffffff;
+            color: var(--text-color);
+            border: 2px solid var(--primary-color);
+            padding: 12px 20px;
+            border-radius: 30px;
             font-weight: 600;
-            font-size: 15px;
+            font-size: 14px;
             cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 10px;
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35);
-            transition: all 0.25s ease;
+            gap: 8px;
+            box-shadow: 0 8px 25px rgba(88, 47, 14, 0.15);
+            transition: all 0.2s ease;
+            text-decoration: none;
         }
-        .checkout-btn:hover {
-            transform: scale(1.03);
-            background-color: #22bf5b;
+        .floating-btn:hover {
+            transform: translateY(-2px);
+            background: #fff9f5;
         }
-        /* Modal de Carrito Gourmet */
+        .floating-checkout {
+            background: #25d366;
+            color: white;
+            border: none;
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
+        }
+        .floating-checkout:hover {
+            background: #20ba5a;
+            background-color: #20ba5a;
+        }
+
+        /* Modal de Carrito Profesional */
         .cart-modal {
             display: none;
             position: fixed;
@@ -283,8 +261,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(88, 47, 14, 0.5);
-            backdrop-filter: blur(6px);
+            background: rgba(88, 47, 14, 0.4);
+            backdrop-filter: blur(5px);
             z-index: 2000;
             justify-content: center;
             align-items: center;
@@ -292,10 +270,10 @@
         .cart-content {
             background: #fff;
             width: 90%;
-            max-width: 520px;
-            padding: 35px;
-            border-radius: 24px;
-            box-shadow: 0 20px 50px rgba(88, 47, 14, 0.2);
+            max-width: 500px;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(88, 47, 14, 0.15);
             max-height: 90vh;
             overflow-y: auto;
             border: 2px solid var(--secondary-color);
@@ -304,20 +282,19 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 22px;
+            margin-bottom: 20px;
             border-bottom: 2px solid #faedcd;
-            padding-bottom: 14px;
+            padding-bottom: 12px;
         }
         .cart-header h3 {
             color: var(--accent-color);
-            font-size: 22px;
-            font-weight: 600;
+            font-size: 20px;
         }
         .close-cart {
             background: #faedcd;
             border: none;
-            width: 36px;
-            height: 36px;
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
             font-size: 16px;
             cursor: pointer;
@@ -325,12 +302,11 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.2s;
+            transition: background 0.2s;
         }
         .close-cart:hover {
             background: var(--primary-color);
             color: white;
-            transform: rotate(90deg);
         }
         .cart-items-list {
             list-style: none;
@@ -351,18 +327,14 @@
             color: #d90429;
             background: #ffe5e9;
             border: none;
-            padding: 5px 12px;
-            border-radius: 8px;
+            padding: 4px 10px;
+            border-radius: 6px;
             cursor: pointer;
             font-size: 11px;
             font-weight: 500;
-            transition: background 0.2s;
-        }
-        .remove-item:hover {
-            background: #f8d7da;
         }
         .form-group {
-            margin-bottom: 16px;
+            margin-bottom: 15px;
         }
         .form-group label {
             display: block;
@@ -373,32 +345,22 @@
         }
         .form-control {
             width: 100%;
-            padding: 12px;
-            border-radius: 12px;
-            border: 1px solid #d4a373;
-            font-size: 13px;
-            background: #fff9f5;
-            color: var(--text-color);
-            outline: none;
-            transition: border-color 0.2s;
-        }
-        .form-control:focus {
-            border-color: var(--accent-color);
-            box-shadow: 0 0 0 3px rgba(188, 108, 37, 0.1);
-        }
-        .options-select, .options-input {
-            margin-bottom: 10px;
-            width: 100%;
             padding: 10px 12px;
             border-radius: 10px;
             border: 1px solid #d4a373;
             font-size: 13px;
             background: #fff9f5;
-            color: var(--text-color);
-            outline: none;
         }
-        .options-select:focus, .options-input:focus {
-            border-color: var(--accent-color);
+        .options-select, .options-input {
+            margin-bottom: 10px;
+            width: 100%;
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid #d4a373;
+            font-size: 13px;
+            background: #fff9f5;
+            color: var(--text-color);
+            text-align: center;
         }
     </style>
 </head>
@@ -424,24 +386,20 @@
 
     <div class="notice-banner">
         <h3>¿QUIERES HACER UN PEDIDO? Agenda con mínimo 2 días de anticipación.</h3>
-        <p>Para confirmar tu pedido, selecciona tus productos y completa los datos en el carrito 🍰📅</p>
+        <p>Selecciona tus productos y completa los datos en el carrito 🍰📅</p>
     </div>
 
     <div class="container">
         <div id="catalog"></div>
     </div>
 
-    <!-- Barra Inferior del Carrito -->
-    <div class="cart-bar">
-        <div class="cart-info">
-            <div>
-                <span>Total: </span>
-                <span class="cart-total" id="cart-total">$0 MXN</span>
-            </div>
-            <button class="view-cart-link" onclick="toggleCartModal()">Ver carrito y completar datos 🛒</button>
-        </div>
-        <button class="checkout-btn" onclick="toggleCartModal()">
-            💬 Realizar mi pedido
+    <!-- Botones Flotantes Minimalistas (Sin barra sólida) -->
+    <div class="floating-cart-container">
+        <button class="floating-btn" onclick="toggleCartModal()">
+            🛒 Ver Carrito (<span id="cart-total">$0 MXN</span>)
+        </button>
+        <button class="floating-btn floating-checkout" onclick="toggleCartModal()">
+            💬 Pedir
         </button>
     </div>
 
@@ -455,7 +413,7 @@
             <ul class="cart-items-list" id="cartItemsList">
                 <!-- Productos agregados -->
             </ul>
-            <div style="font-weight: 700; text-align: right; margin-bottom: 20px; font-size: 17px; color: var(--accent-color);">
+            <div style="font-weight: 700; text-align: right; margin-bottom: 20px; font-size: 16px; color: var(--accent-color);">
                 Total: <span id="modal-cart-total">$0 MXN</span>
             </div>
 
@@ -472,7 +430,7 @@
                 <input type="text" id="orderType" class="form-control" placeholder="Ej. Paso a recoger / Envío a Colonia Centro...">
             </div>
 
-            <button class="checkout-btn" style="width: 100%; justify-content: center; margin-top: 15px; padding: 14px; border-radius: 12px;" onclick="checkoutWhatsApp()">
+            <button class="checkout-btn" style="width: 100%; justify-content: center; margin-top: 15px; padding: 14px;" onclick="checkoutWhatsApp()">
                 💬 Enviar pedido por WhatsApp
             </button>
         </div>
